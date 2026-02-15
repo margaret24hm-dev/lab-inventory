@@ -1,5 +1,87 @@
-# Lab Inventory Project
+# LabFreezer - 实验室样品管理系统
 
-This is a React + TypeScript application for managing lab inventory, built with Vite and Zustand.
+一款专为纳米材料实验室设计的样品库存管理系统，支持多用户云端同步。
 
- logic is implemented and can be tested by clicking the "Move +1" button on a sample.
+## 功能特性
+
+- **可视化网格管理**：10x10 网格布局，直观展示样品存储位置
+- **拖拽移动**：支持样品拖拽交换位置
+- **样品信息记录**：
+  - 样品编号、名称
+  - 粒径大小
+  - 表面修饰（油酸/其他）
+  - 溶剂环境
+  - 理论浓度、实际浓度
+  - 详细备注
+- **颜色标识**：油酸配体显示黄色，其他配体显示蓝色
+- **样品复制**：一键复制样品到下一个空位
+- **垃圾盒归档**：废弃样品归档保留记录
+- **数据导出**：支持 JSON/CSV 格式导出
+- **多端同步**：基于 Supabase 实现云端数据同步
+- **用户隔离**：每个用户只能访问自己的数据
+
+## 技术栈
+
+- **前端框架**：React 18 + TypeScript
+- **构建工具**：Vite
+- **状态管理**：Zustand
+- **UI 组件**：Radix UI + TailwindCSS
+- **后端服务**：Supabase（PostgreSQL + Auth）
+- **拖拽功能**：dnd-kit
+
+## 在线演示
+
+访问部署的网站：[LabFreezer](https://lab-inventory-web.vercel.app/)
+
+注册账户后即可使用。
+
+
+## 使用说明
+
+### 创建容器
+
+1. 点击左侧边栏「新增容器」
+2. 输入容器名称（如：96孔板-A1）
+3. 容器创建后自动选中
+
+### 添加样品
+
+1. 点击网格中的空白格子
+2. 填写样品信息（编号和名称为必填）
+3. 点击「确认入库」
+
+### 编辑样品
+
+1. 点击已有样品的格子
+2. 修改信息后点击「保存修改」
+3. 或点击「复制样品」创建副本
+4. 或点击「标记空瓶/归档」移入垃圾盒
+
+### 移动样品
+
+按住样品格子拖拽到目标位置，支持交换位置。
+
+### 导出数据
+
+点击右上角「导出」按钮，选择 JSON 或 CSV 格式。
+
+## 项目结构
+
+```
+src/
+├── components/
+│   ├── auth/          # 登录注册组件
+│   ├── freezer/       # 样品管理组件
+│   ├── layout/        # 布局组件
+│   └── ui/            # UI 基础组件
+├── context/           # React Context
+├── hooks/             # 自定义 Hooks
+├── lib/               # 工具库
+├── store/             # Zustand 状态管理
+├── types/             # TypeScript 类型定义
+└── App.tsx            # 主应用
+```
+
+## License
+
+MIT
